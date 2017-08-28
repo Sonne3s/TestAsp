@@ -69,7 +69,7 @@
 </table>
 @if (User.IsInRole("Admin"))
 {
-using (Html.BeginForm("CreateGroup","Activity"))
+using (Html.BeginForm("CreateGroup","Activity")) 
 {
     <h3>Добавить группу</h3>
     <select name="sort">
