@@ -1,0 +1,63 @@
+﻿@using TestAsp.Infrastructure;
+@model IEnumerable<TestAsp.ViewModels.BlogModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Новости</h3>
+
+<p>
+    @if (User.IsInRole("Admin"))
+    {@Html.ActionLink("Создать", "Create", "Add", new { type = "New" }, new { @class = "btn btn-primary" })}
+</p>
+
+<div class="container-fluid">
+    @foreach (var item in Model.OrderByDescending(x => x.ID))
+    {
+        <!--<div class="well">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    //Html.DisplayFor(modelItem => item.Name)
+                </div>
+            </div>
+            <br />
+            <div class="row news-text">
+                //foreach(var c in item.Contents)
+                {<p class="text-justify">//Html.DisplayFor(modelItem => c)</p>}
+            </div>
+        </div>-->
+   
+            <div class="media">
+                <a class="pull-left" href="@Url.Action("View",new {id=item.ID})">
+                    <img class="media-object" src="~/Content/img/@InterpredNews.Interpred(item.HeadImg) " width="200" />
+                </a>
+                <div class="media-body">
+                    <div class="row">
+                        <div class="col-lg-10 col-md-9 col-sm-8">
+                            <h4 class="media-heading">@Html.DisplayFor(modelItem => item.Name)</h4>
+                            <p class="text-justify">@Html.DisplayFor(modelItem => item.Contents[0])</p>
+                        </div>
+                            @if (User.IsInRole("Admin"))
+                             {
+                            <div class="col-lg-2 col-md-3 col-sm-4">
+                                <div class="btn-group-vertical">
+                                    @using (Html.BeginForm("Delete", "News"))
+                                    {
+                                        <input type="submit" class="btn btn-default btn-danger" value="Удалить" />
+                                        @Html.Hidden("idnews",item.ID)
+                                    }
+                                    @*@using (Html.BeginForm("Publish", "News")) {
+                                        <a href="" class="btn btn-default btn-success">Опубликовать</a>
+                                        @Html.Hidden("idnews", item.ID)
+                                    }*@
+                                </div>
+                            </div>
+                            }
+                        </div>                    
+                </div>
+    </div>
+    }
+</div>
+
+

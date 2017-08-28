@@ -1,0 +1,90 @@
+﻿@model TestAsp.ViewModels.TrainersWithGroups
+@using TestAsp.Models
+@{
+    ViewBag.Title = "Trainers";
+}
+<h3>Список тренеров</h3>
+
+<div class="btn-group">
+    @Html.ActionLink("Расписание", "Index", "Activity", new { @class = "btn btn-default" })
+    @Html.ActionLink("Тренеры", "Trainers", "Activity", new { @class = "btn btn-default" })
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Ученики", "Students", "Activity", new { @class = "btn btn-default" })
+        @Html.ActionLink("Родственники", "Parents", "Activity", new { @class = "btn btn-default" })
+    }
+</div>
+@if (User.IsInRole("Admin"))
+    {
+<div>
+    @Html.ActionLink("Добавить тренера", "CreateTrainer", "Activity", new { @class = "btn btn-primary" })
+</div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ФИО</th>
+            <th>Номер телефона</th>
+            <th colspan="2">Группа</th>
+        </tr>
+    </thead>
+    @foreach(var item in Model.Trainers)
+    {<tr>
+        <td>@item.Last @item.First @item.Middle</td>
+        <td>@item.Phone</td>
+        <td>
+            @foreach (var t in Model.Groups.Where(g => g.TrainerID == item.ID))
+            {
+                @t.Sort@t.Postfix 
+                if (User.IsInRole("Admin"))
+                {<a href="@Url.Action("UnAppointGroup", new { id = t.ID.ToString() })"><span class="glyphicon glyphicon-remove" style="color:red"></span></a>}
+                @:,
+            }
+        </td>
+        @if (User.IsInRole("Admin"))
+        {
+            <td>
+                @using (Html.BeginForm("AppointGroup", "Activity"))
+                {
+                    <select name="idGroup">
+                        @foreach (var g in Model.Groups)
+                        {
+                            <option value="@g.ID">@g.Sort@g.Postfix</option>
+                        }
+                    </select>
+                    <input type="hidden" name="idTrainer" value="@item.ID" />
+                    <input type="submit" value="Добавить" class="btn btn-default"/>
+                }
+            </td>
+    <td>
+        @using (Html.BeginForm("DeleteTrainer", "Activity"))
+        {
+            <input type="hidden" value="@item.ID" name="id" />
+            <input type="submit" value="Удалить" class="btn btn-danger" />
+        }
+    </td>
+
+        }
+    </tr>}
+</table>
+@if (User.IsInRole("Admin"))
+{
+using (Html.BeginForm("CreateGroup","Activity"))
+{
+    <h3>Добавить группу</h3>
+    <select name="sort">
+        @foreach(var s in Enum.GetValues(typeof(Sort)))
+        {
+            <option value="@s">@s</option>
+        }
+    </select>
+    <input type="text" name="postfix" />
+    <input type="submit" value="Добавить"/>
+}
+foreach(var g in Model.Groups)
+{
+    @g.Sort@g.Postfix@:,
+    <a href="@Url.Action("DeleteGroup", new {id=g.ID.ToString()})"><span class="glyphicon glyphicon-remove" style="color:red"></span></a>
+}
+}
+

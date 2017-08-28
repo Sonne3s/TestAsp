@@ -1,0 +1,37 @@
+﻿@model TestAsp.ViewModels.ParentsPageModel
+@using TestAsp.ViewModels
+@{
+    ViewBag.Title = "Index";
+}
+<h3>Родственники</h3>
+<div class="btn-group">
+    @Html.ActionLink("Расписание", "Index", "Activity", new { @class = "btn btn-default" })
+    @Html.ActionLink("Тренеры", "Trainers", "Activity", new { @class = "btn btn-default" })
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Ученики", "Students", "Activity", new { @class = "btn btn-default" })
+        @Html.ActionLink("Родственники", "Parents", "Activity", new { @class = "btn btn-default" })
+    }
+</div> 
+<div>
+    @Html.ActionLink("Добавить родственника", "CreateParent", "Activity", new { @class = "btn btn-primary" })
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr><th>ФИО</th><th>ФИО ученика</th><th>Степень родства</th><th>Номер телефона</th></tr>
+    </thead>
+    <tbody>
+    @foreach (ParentPageModel p in Model.Parents)
+    {
+        <tr>
+            <td>@p.Last @p.First @p.Middle</td>
+            <td>@p.Student.Last @p.Student.First @p.Student.Middle</td>
+            <td>@p.Degree</td>
+            <td>@p.Phone</td>
+             @if (User.IsInRole("Admin")){
+            <td>@Html.ActionLink("Удалить", "DeleteParent", "Activity", new {id=p.ID }, new { @class = "btn btn-danger" })</td>}
+        </tr>
+    }
+    </tbody>
+</table>
+

@@ -1,0 +1,65 @@
+﻿@model TestAsp.Infrastructure.PicturesModel
+@{
+    Layout = null;
+}
+<script type="text/javascript">
+   window.getUrl=function getUrl(){return '@Url.Action("Pictures", "Add")';}
+    function processData(data) {
+        target = $('#dropped-files');
+        target.empty();
+        var filter = $('#filter');
+        if (data.Filter === "none")
+        {
+            addImage(-1);
+            filter.text("Текущая");
+        }
+        else
+        {
+
+            if (data.Filter === " ") filter.text("Все");
+            else filter.text(data.Filter);
+            for (var i = 0; i < data.ID.length; i++) {
+                target.append('<li>' +
+                    '<div class="menu-pictures">' +
+                                 '<div class="btn-group">' +
+                                     '<button type="button" id="addpict' + data.ID[i] + '" class="btn btn-default btn-sm addpict"><span class="glyphicon glyphicon-plus" style="color:blue"></span></button>' +
+                                     '<button type="button" id="fullpict' + data.ID[i] + '" class=" btn btn-default btn-sm fullpict"><span class="glyphicon glyphicon-fullscreen"></span></button>' +
+                                     '<button type="button" class="btn btn-default btn-sm disabled" style="background-color:#F2F2F2"><span class="glyphicon glyphicon-minus disabled" style="color:red"></span></button>' +
+                                 '</div>' +
+                                 '<img src="/Content/img/' + data.Picture[i] + '" class="img-responsive" />' +
+                                 '<p>' + data.Name[i] + '</p>' +
+                             '</div>' +
+                        ' </li>');
+            }
+        }
+    }
+</script>
+
+<input type="hidden" name="picture_name" value="@Model.MaxId" />
+<div id="drop-files" ondragover="return false">
+    <div id="uploaded-holder">
+        <div class="btn-group">
+            <button id="filter" type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle dropdown-pictures">Текущая<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>@Ajax.ActionLink("текущие", "Create", new { filter = "none" }, new AjaxOptions { /*UpdateTargetId = "processData",*/ Url = Url.Action("GetPicturesJson", new { filter = "none" }), OnSuccess = "processData" }, new { id = "none" })</li>
+                <li>@Ajax.ActionLink("все", "Create", new { filter = " " }, new AjaxOptions
+                       { @*UpdateTargetId = "ajax",*@ Url = Url.Action("GetPicturesJson", new { filter = " " }),
+                        OnSuccess = "processData"
+                       })</li>
+                @foreach (var t in Model.Topics)
+                {
+                    <li>@Ajax.ActionLink(t, "Create", new { filter = t }, new AjaxOptions
+                           { @*UpdateTargetId = "ajax",*@ Url = Url.Action("GetPicturesJson", new { filter = t }),
+                            OnSuccess = "processData"
+                           })</li>
+                }
+            </ul>
+        </div>
+        <ul class="nav nav-tabs" id="dropped-files">
+        </ul>
+    </div>
+    @*<input type="button" value="otpravit" class="upl" />*@    
+</div>
+
+

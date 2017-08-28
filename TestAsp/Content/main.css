@@ -1,0 +1,89 @@
+﻿.news-block{
+    background-color:honeydew;
+    margin-bottom:10pt;
+}
+.news-text{
+    text-indent:20pt;
+}
+.body-content {
+    padding-left: 30px;
+    padding-right: 30px;
+    background:white;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+}
+
+    h2 {
+        margin: 0;
+        color: #666;
+        /*background:#FFF9F2;*/
+        padding: 10px 0;
+        font-size: 52px;
+        font-family: "trebuchet ms", sans-serif;
+    }
+
+    .item {
+        background: #333;
+        text-align: center;
+        align-content: center;
+        height:500px;   
+    }
+
+    .carousel {
+        margin-top: 20px;
+    }
+    .carousel-inner{
+    }
+
+    .item > img{
+    max-height:500px !important;
+    min-height:400px !important;
+    margin: auto auto;
+    padding: 2% 0;
+}
+    .load-img{
+        max-width:50%;
+    }
+.creator-head{
+    padding-top:10px;  
+    height: 150px; /* Высота блока */
+    background:#6B6B6B;
+    color:white;
+        }
+body{
+    background:#F7F7F7;
+}
+.pictures{
+    position:absolute;
+    right:0px;
+    overflow-y:scroll;
+    height:100%;
+}
+.create{
+    position:relative;
+    height:100% !important;
+}
+.menu-pictures:hover{
+    /*background-color:grey;*/
+    box-shadow:4px 4px 5px 1px grey;
+}
+.dropdown-pictures{   
+    width:144px;
+}
+.add-pictures{
+    width:135px;
+}
+#drop-files{
+    min-height:100px;
+    min-width:100px;
+}
+#image-fullscreen{
+    position:absolute;
+    top:0;
+    left:0;
+    opacity:0.9;
+}

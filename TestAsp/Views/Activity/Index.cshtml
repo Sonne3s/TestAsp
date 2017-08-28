@@ -1,0 +1,82 @@
+﻿@model TestAsp.ViewModels.ScheduleWithGroup
+@using TestAsp.Models
+@{
+    ViewBag.Title = "Расписание занятий";
+}
+<h3>Расписание занятий</h3>
+
+<div class="btn-group">
+    @Html.ActionLink("Расписание", "Index", "Activity", new { @class = "btn btn-default" })
+    @Html.ActionLink("Тренеры", "Trainers", "Activity", new { @class = "btn btn-default" })
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Ученики", "Students", "Activity", new { @class = "btn btn-default" })
+        @Html.ActionLink("Родственники", "Parents", "Activity", new { @class = "btn btn-default" })
+    }
+</div> 
+
+<table class="table table-striped">
+    <thead>
+        <tr><th>Дни недели</th>
+        @{var time = Model.Schedules.OrderBy(x=>x.STime).Select(x => x.STime).Distinct();}
+        @foreach(var t in time)
+        {
+            <th>@t.ToString("HH:mm")</th>
+        }        
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var s in Model.Schedules.Select(x=>x.Day).OrderBy(x=>x).Distinct())
+    {
+        <tr>
+            <td>@s</td>
+            @foreach(var t in time)
+            {
+                 <td>
+                     @{
+                         if(Model.Schedules.Find(x=>x.STime==t&&x.Day==s)!=null)
+                         {
+                             @Model.Groups.Find(y=>y.ID==Model.Schedules.Find(x=>x.STime==t).GroupID).Sort.ToString()
+                             @Model.Groups.Find(y=>y.ID==Model.Schedules.Find(x=>x.STime==t).GroupID).Postfix.ToString()
+                             if (User.IsInRole("Admin")){<a href="@Url.Action("DeleteSchedule", new 
+                               { 
+                                    id = Model.Schedules.Find(x => x.STime == t && x.Day == s).ID.ToString(),
+                               })">
+                            <span class="glyphicon glyphicon-remove" style="color:red"></span></a>
+                             }
+                         }
+                         else
+                         {
+                             @: - 
+                         }
+                     }                                                                                   
+                 </td>
+            }
+        </tr>
+    }        
+    </tbody>
+</table>
+@if (User.IsInRole("Admin")) {
+    <h3>Добавить тренеровку</h3>
+    <div class="form-inline">
+        @using (Html.BeginForm("CreateSchedule", "Activity"))
+        {
+            <select name="dayweek" class="form-group form-control">
+                @foreach (var day in Enum.GetValues(typeof(DayWeek)))
+                    {
+                        <option value="@day">@day</option>
+                    }
+            </select>
+        <input type="time" name="stime" class="form-group form-control" />
+        <select name="groupid" class="form-group form-control">
+            @foreach (var m in Model.Groups)
+            {
+                <option value="@m.ID">@m.Sort@m.Postfix</option>
+            }
+        </select>
+        <input type="submit" value="Добавить" class="btn btn-primary" />
+            }
+    </div>
+}
+        
+

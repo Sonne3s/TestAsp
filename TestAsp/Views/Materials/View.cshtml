@@ -1,0 +1,15 @@
+﻿@model TestAsp.ViewModels.BlogModel
+@using TestAsp.Infrastructure;
+
+@{
+    ViewBag.Title = "View";
+
+}
+
+<style type="text/css">
+
+</style>
+
+<h2>@Model.Name</h2>
+
+@Html.Interpred(Model.Contents)

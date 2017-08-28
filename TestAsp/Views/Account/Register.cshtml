@@ -1,0 +1,41 @@
+﻿@model TestAsp.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Регистрация</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div>
+        <hr />
+        @Html.ValidationSummary(false)
+
+        <div>
+            Логин
+            <div>
+                @Html.EditorFor(model=>model.Email)
+            </div>
+        </div>
+        <div>
+            Пароль
+            <div>
+                @Html.EditorFor(model => model.Password)
+            </div>
+        </div>
+        <div>
+            Повторите пароль
+            <div>
+                @Html.EditorFor(model => model.PasswordConfirm)
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <input type="submit" value="Зарегистрироваться" />
+            </div>
+        </div>
+    </div>
+}

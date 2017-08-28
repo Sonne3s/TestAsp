@@ -1,0 +1,27 @@
+﻿@model TestAsp.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Авторизация</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div>
+        @Html.ValidationSummary()
+        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+        <p>
+            <label>Логин</label><br />
+            @Html.EditorFor(x=>x.Email)
+        </p>
+        <p>
+            <label>Пароль</label><br />
+            @Html.EditorFor(x => x.Password)
+        </p>
+        <p><button type="submit">Войти</button></p>
+        <br />
+        @Html.ActionLink("Регистрация", "Register", "Account", new { @class = "btn btn-primary" })
+    </div>
+}

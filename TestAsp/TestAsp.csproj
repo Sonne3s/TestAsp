@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0BA32AC4-B2C1-41E9-AC4C-63436C8EE812}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TestAsp</RootNamespace>
+    <AssemblyName>TestAsp</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\..\..\..\Андрей\documents\visual studio 2013\Projects\TestAsp\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\create.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\upload.drop.js" />
+    <Content Include="Scripts\upload.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivityController.cs" />
+    <Compile Include="Controllers\AddController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\MaterialsController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="CustomRequestValidation.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="DAL\EFDbContext.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\InterpredNews.cs" />
+    <Compile Include="Infrastructure\PicturesModel.cs" />
+    <Compile Include="Migrations\201703061213068_InitialCreate.cs" />
+    <Compile Include="Migrations\201703061213068_InitialCreate.Designer.cs">
+      <DependentUpon>201703061213068_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703280646100_AddPictures.cs" />
+    <Compile Include="Migrations\201703280646100_AddPictures.Designer.cs">
+      <DependentUpon>201703280646100_AddPictures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703280718194_AddPictures1.cs" />
+    <Compile Include="Migrations\201703280718194_AddPictures1.Designer.cs">
+      <DependentUpon>201703280718194_AddPictures1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703291052401_AddTopicOnPicturs.cs" />
+    <Compile Include="Migrations\201703291052401_AddTopicOnPicturs.Designer.cs">
+      <DependentUpon>201703291052401_AddTopicOnPicturs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704151413301_PicturesNoIncrement.cs" />
+    <Compile Include="Migrations\201704151413301_PicturesNoIncrement.Designer.cs">
+      <DependentUpon>201704151413301_PicturesNoIncrement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704151417233_PicturesNoIncrement2.cs" />
+    <Compile Include="Migrations\201704151417233_PicturesNoIncrement2.Designer.cs">
+      <DependentUpon>201704151417233_PicturesNoIncrement2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704151426173_PicturesNoIncrement3.cs" />
+    <Compile Include="Migrations\201704151426173_PicturesNoIncrement3.Designer.cs">
+      <DependentUpon>201704151426173_PicturesNoIncrement3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704151437001_PicturesNoIncrement4.cs" />
+    <Compile Include="Migrations\201704151437001_PicturesNoIncrement4.Designer.cs">
+      <DependentUpon>201704151437001_PicturesNoIncrement4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704151440137_PicturesNoIncrement5.cs" />
+    <Compile Include="Migrations\201704151440137_PicturesNoIncrement5.Designer.cs">
+      <DependentUpon>201704151440137_PicturesNoIncrement5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705021751013_AddMoreModels.cs" />
+    <Compile Include="Migrations\201705021751013_AddMoreModels.Designer.cs">
+      <DependentUpon>201705021751013_AddMoreModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705021754513_AddMoreModels1.cs" />
+    <Compile Include="Migrations\201705021754513_AddMoreModels1.Designer.cs">
+      <DependentUpon>201705021754513_AddMoreModels1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705030937115_AddMoreModels2.cs" />
+    <Compile Include="Migrations\201705030937115_AddMoreModels2.Designer.cs">
+      <DependentUpon>201705030937115_AddMoreModels2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705031025591_AddMoreModels3.cs" />
+    <Compile Include="Migrations\201705031025591_AddMoreModels3.Designer.cs">
+      <DependentUpon>201705031025591_AddMoreModels3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705031131549_updStudentsPhoneToString.cs" />
+    <Compile Include="Migrations\201705031131549_updStudentsPhoneToString.Designer.cs">
+      <DependentUpon>201705031131549_updStudentsPhoneToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705041130465_AddMoreModels4.cs" />
+    <Compile Include="Migrations\201705041130465_AddMoreModels4.Designer.cs">
+      <DependentUpon>201705041130465_AddMoreModels4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705041407489_updParentsPhoneToString.cs" />
+    <Compile Include="Migrations\201705041407489_updParentsPhoneToString.Designer.cs">
+      <DependentUpon>201705041407489_updParentsPhoneToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051845091_AuthAdd.cs" />
+    <Compile Include="Migrations\201705051845091_AuthAdd.Designer.cs">
+      <DependentUpon>201705051845091_AuthAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705061258285_DataMigration.cs" />
+    <Compile Include="Migrations\201705061258285_DataMigration.Designer.cs">
+      <DependentUpon>201705061258285_DataMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705071404169_AddMoreModels5.cs" />
+    <Compile Include="Migrations\201705071404169_AddMoreModels5.Designer.cs">
+      <DependentUpon>201705071404169_AddMoreModels5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705071542212_UpdGroup.cs" />
+    <Compile Include="Migrations\201705071542212_UpdGroup.Designer.cs">
+      <DependentUpon>201705071542212_UpdGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705071601110_UpdTrainersPhoneToString.cs" />
+    <Compile Include="Migrations\201705071601110_UpdTrainersPhoneToString.Designer.cs">
+      <DependentUpon>201705071601110_UpdTrainersPhoneToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705071637252_UpdTrainersTrainerIDNullable.cs" />
+    <Compile Include="Migrations\201705071637252_UpdTrainersTrainerIDNullable.Designer.cs">
+      <DependentUpon>201705071637252_UpdTrainersTrainerIDNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705081420527_UpdScheduleMondey.cs" />
+    <Compile Include="Migrations\201705081420527_UpdScheduleMondey.Designer.cs">
+      <DependentUpon>201705081420527_UpdScheduleMondey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ApplicationRole.cs" />
+    <Compile Include="Models\ApplicationRoleManager.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\ApplicationUserManager.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventsContent.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Material.cs" />
+    <Compile Include="Models\MaterialsContent.cs" />
+    <Compile Include="Models\Medal.cs" />
+    <Compile Include="Models\New.cs" />
+    <Compile Include="Models\NewsContent.cs" />
+    <Compile Include="Models\Parent.cs" />
+    <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Trainer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BlogModel.cs" />
+    <Compile Include="ViewModels\ParentsPageModel.cs" />
+    <Compile Include="ViewModels\ScheduleWithGroup.cs" />
+    <Compile Include="ViewModels\TrainersWithGroups.cs" />
+    <Compile Include="ViewModels\UsersWithRoles.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\News\View.cshtml" />
+    <Content Include="Views\Add\Create.cshtml" />
+    <Content Include="Views\Add\GetPictures.cshtml">
+      <BrowseToURL>~/News/GetPictures</BrowseToURL>
+    </Content>
+    <Content Include="Views\Materials\Index.cshtml" />
+    <Content Include="Views\Materials\View.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Events\View.cshtml" />
+    <Content Include="Views\Activity\Index.cshtml" />
+    <Content Include="Views\Activity\Create.cshtml" />
+    <Content Include="Views\Activity\Students.cshtml" />
+    <Content Include="Views\Activity\Parents.cshtml" />
+    <Content Include="Views\Activity\CreateParent.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Activity\Trainers.cshtml" />
+    <Content Include="Views\Activity\CreateTrainer.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\img\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703061213068_InitialCreate.resx">
+      <DependentUpon>201703061213068_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703280646100_AddPictures.resx">
+      <DependentUpon>201703280646100_AddPictures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703280718194_AddPictures1.resx">
+      <DependentUpon>201703280718194_AddPictures1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703291052401_AddTopicOnPicturs.resx">
+      <DependentUpon>201703291052401_AddTopicOnPicturs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704151413301_PicturesNoIncrement.resx">
+      <DependentUpon>201704151413301_PicturesNoIncrement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704151417233_PicturesNoIncrement2.resx">
+      <DependentUpon>201704151417233_PicturesNoIncrement2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704151426173_PicturesNoIncrement3.resx">
+      <DependentUpon>201704151426173_PicturesNoIncrement3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704151437001_PicturesNoIncrement4.resx">
+      <DependentUpon>201704151437001_PicturesNoIncrement4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704151440137_PicturesNoIncrement5.resx">
+      <DependentUpon>201704151440137_PicturesNoIncrement5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705021751013_AddMoreModels.resx">
+      <DependentUpon>201705021751013_AddMoreModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705021754513_AddMoreModels1.resx">
+      <DependentUpon>201705021754513_AddMoreModels1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705030937115_AddMoreModels2.resx">
+      <DependentUpon>201705030937115_AddMoreModels2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705031025591_AddMoreModels3.resx">
+      <DependentUpon>201705031025591_AddMoreModels3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705031131549_updStudentsPhoneToString.resx">
+      <DependentUpon>201705031131549_updStudentsPhoneToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041130465_AddMoreModels4.resx">
+      <DependentUpon>201705041130465_AddMoreModels4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041407489_updParentsPhoneToString.resx">
+      <DependentUpon>201705041407489_updParentsPhoneToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051845091_AuthAdd.resx">
+      <DependentUpon>201705051845091_AuthAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705061258285_DataMigration.resx">
+      <DependentUpon>201705061258285_DataMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705071404169_AddMoreModels5.resx">
+      <DependentUpon>201705071404169_AddMoreModels5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705071542212_UpdGroup.resx">
+      <DependentUpon>201705071542212_UpdGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705071601110_UpdTrainersPhoneToString.resx">
+      <DependentUpon>201705071601110_UpdTrainersPhoneToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705071637252_UpdTrainersTrainerIDNullable.resx">
+      <DependentUpon>201705071637252_UpdTrainersTrainerIDNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705081420527_UpdScheduleMondey.resx">
+      <DependentUpon>201705081420527_UpdScheduleMondey.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>12690</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:12690/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,40 @@
+﻿@model List<TestAsp.Models.Student>
+@using TestAsp.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Ученики</h3>
+
+<div class="btn-group">
+    @Html.ActionLink("Расписание", "Index", "Activity", new { @class = "btn btn-default" })
+    @Html.ActionLink("Тренеры", "Trainers", "Activity", new { @class = "btn btn-default" })
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Ученики", "Students", "Activity", new { @class = "btn btn-default" })
+        @Html.ActionLink("Родственники", "Parents", "Activity", new { @class = "btn btn-default" })
+    }
+</div> 
+
+<div>@Html.ActionLink("Добавить спортсмена", "Create", "Activity", new { @class = "btn btn-primary" })</div>
+<table class="table table-striped">
+    <thead>
+        <tr><th>ФИО</th><th>Дата рождения</th><th>Вес</th><th>Разряд</th><th>Номер телефона</th></tr>
+    </thead>
+    <tbody>
+    @foreach (Student s in Model)
+    {
+        <tr>
+            <td>@s.Last @s.First @s.Middle</td>
+            <td>@s.BirthDay.Date.ToString("dd.MM.yyyy")</td>
+            <td>@s.Weight</td>
+            <td>@s.Rank</td>
+            <td>@s.Phone</td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>@Html.ActionLink("Удалить", "DeleteStudent", "Activity", new { id = s.ID }, new { @class = "btn btn-danger" })</td>}
+        </tr>
+    }
+    </tbody>
+</table>
+

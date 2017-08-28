@@ -1,0 +1,26 @@
+﻿@using TestAsp.Infrastructure;
+@model IEnumerable<TestAsp.ViewModels.BlogModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h3></h3>
+
+<div class="container-fluid">
+    @foreach (var item in Model.OrderByDescending(x => x.ID))
+    {
+        <div class="media">
+            <a class="pull-left" href="@Url.Action("View",item.Type+"s",new {id=item.ID})">
+                <img class="media-object" src="~/Content/img/@InterpredNews.Interpred(item.HeadImg) " width="200" />
+            </a>
+            <div class="media-body">
+                <div class="row">
+                    <div class="col-lg-10 col-md-9 col-sm-8">
+                        <h4 class="media-heading">@Html.DisplayFor(modelItem => item.Name)</h4>
+                        <p class="text-justify">@Html.DisplayFor(modelItem => item.Contents[0])</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

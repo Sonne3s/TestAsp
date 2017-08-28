@@ -1,0 +1,133 @@
+﻿@model TestAsp.ViewModels.BlogModel
+@{
+    ViewBag.Title = "Create";
+}
+<h2>Добавление статьи</h2>
+
+<div class="row">
+    <div class="create">
+        <div class="form-horizontal">
+<div class="form-group">
+    @using (Html.BeginForm("Create", "Add", FormMethod.Post, new { enctype = "multipart/form-data", id="form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="col-md-10">
+            <input type="hidden" name="Type" value=@Model.Type />
+            <div class="creator-head">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control span1", placeholder = "Новая статья", id="topic"} })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.HeadImg, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.HeadImg, new { htmlAttributes = new { @class = "form-control span1", placeholder = "<img=*.jpg>" } })
+                    @Html.ValidationMessageFor(model => model.HeadImg, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="container">
+                @Html.LabelFor(model => model.Contents, htmlAttributes: new { @class = "control-label col-sm-3 col-sm-offset-3 col-xs-2 col-xs-offset-8" })
+            </div>
+            <div class="col-md-12">
+                <!--<input style="font-weight:bold" type="button" value="жирный" class="btn btn-default" width="100" />
+                //<input style="font-style:italic" type="button" value="курсивный" class="btn btn-default" width="100" />
+                //<input style="font-style:italic" type="button" value="" class="btn btn-default" width="100" />-->
+                <a href="" id="b" class="btn btn-default"><b>жирный</b></a>
+                <a href="" id="i" class="btn btn-default"><i>курсивный</i></a>
+                <a href="" id="quote" class="btn btn-default">"цитирование"</a>
+            </div>
+            <div>
+                @Html.TextAreaFor(model => model.Contents, htmlAttributes: new
+               {
+                   id="textarea",
+                   @class = "form-control",
+                   rows = "10",
+                   placeholder = @"Текст вида:
+Абзац1
+<img=1.jpg> - одиночное изображение
+Абзац2
+<img=1.jpg>
+<img=2.jpg>
+<img=3.jpg> - группа изображений"
+               })
+                @Html.ValidationMessageFor(model => model.Contents, "", new { @class = "text-danger" })
+            </div>
+            <div class="creator-head">
+                <!--<label for="images" class="control-label col-md-2">Загрузить изображения</label>
+                <div class="col-md-10">
+                    <input type="file" name="images" id="images" multiple="multiple" class="form-control load-img" />
+                </div>-->
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Создать" class="btn btn-default" id="fake-submit" />
+                    <input type="submit" value="Создать" class="hidden" id="submit" />
+                </div>
+            </div>
+        </div>
+    }
+    <div class="col-md-2 pictures" id="pictures">
+
+        <div id="ajax">
+           @Html.Action("GetPictures")
+        </div>
+        @*<!-- Кнопки загрузить и удалить, а также количество файлов -->
+        <div id="upload-button">
+            <center>
+                <span>0 Файлов</span>
+                <a href="#" class="upload">Загрузить</a>
+                <a href="#" class="delete">Удалить</a>
+                <!-- Прогресс бар загрузки -->
+                <div id="loading">
+                    <div id="loading-bar">
+                        <div class="loading-color"></div>
+                    </div>
+                    <div id="loading-content"></div>
+                </div>
+            </center>
+        </div>*@
+
+        <form id="frm">
+            <label class="btn btn-block btn-default add-pictures ">
+                <span class="glyphicon glyphicon-plus" style="font-size:xx-large;"></span>
+
+                <input type="file" name="images" id="uploadbtn" multiple="multiple" class="btn btn-default btn-block" style="display:none;" ondragover="return false"><!--id="images"-->
+            </label>
+        </form>
+
+        <!-- Список загруженных файлов -->
+        <div id="file-name-holder">
+            <ul id="uploaded-files">
+                <h1>Загруженные файлы</h1>
+            </ul>
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Назад", "Index")
+</div>
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $("#test").on('click', function (e) {
+            alert("test");
+            $.ajax({
+                type: "POST",
+                url: getUrl(),
+                contentType: false,
+                processData: false,
+                data: data,
+                success: false,
+                error: false
+                //error: function (xhr, status, p3) {
+                //    alert(xhr.responseText);
+            });
+        });
+    });
+</script>*@
+@Scripts.Render("~/bundles/uploadrp")
